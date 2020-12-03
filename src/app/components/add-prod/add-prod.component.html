@@ -1,0 +1,83 @@
+<form [formGroup]="add_product_form">
+  <div class="container" fxLayout="column">
+    <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+      <mat-label>barcode</mat-label>
+      <input matInput type="text" formControlName="prod_id" placeholder="barcode" (keyup)="doCheckDuplicateBarcode($event)">
+      <mat-error *ngIf="add_product_form.get('prod_id').invalid && add_product_form.get('prod_id').touched">invalid value</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+      <mat-label>product name</mat-label>
+      <input matInput  formControlName="prod_name"  type="text" placeholder="product name">
+      <mat-error *ngIf="add_product_form.get('prod_name').invalid && add_product_form.get('prod_name').touched">invalid value</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+      <mat-label>product type</mat-label>
+      <mat-select formControlName="prod_type_id">
+        <mat-option *ngFor="let prod of prod_type" [value]="prod.prod_type_id">
+          {{prod.type_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="add_product_form.get('prod_type_id').invalid && add_product_form.get('prod_type_id').touched">invalid value</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+      <mat-label>amount</mat-label>
+      <input matInput formControlName="prod_amount" type="text" placeholder="amount">
+      <mat-error *ngIf="add_product_form.get('prod_amount').invalid && add_product_form.get('prod_amount').touched">invalid value</mat-error>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <mat-form-field appearance="outline" >
+        <span matPrefix>
+          <mat-icon>mode_edit</mat-icon>
+        </span>
+        <mat-label>cost</mat-label>
+        <input matInput formControlName="cost" type="text" placeholder="cost">
+        <mat-error *ngIf="add_product_form.get('cost').invalid && add_product_form.get('cost').touched">invalid value</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <span matPrefix>
+          <mat-icon>mode_edit</mat-icon>
+        </span>
+        <mat-label>sell price</mat-label>
+        <input matInput formControlName="sell_price" type="text" placeholder="sell price">
+        <mat-error *ngIf="add_product_form.get('sell_price').invalid && add_product_form.get('sell_price').touched">invalid value</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+      <mat-label>update date</mat-label>
+      <input matInput formControlName="upd_date" type="date" placeholder="update date">
+    </mat-form-field>
+    <mat-toolbar fxLayout="row" color="accent" fxLayoutAlign="start center">
+      Upload Image
+    </mat-toolbar>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+      <p>click here to upload your image</p>
+      <mat-spinner *ngIf="isUploading"></mat-spinner>
+      <h4 *ngIf="uploadedFile">file name : {{uploadedFile}}</h4>
+      <button mat-stroked-button color="accent" (click)="doClickUpload()" disabled>
+        <mat-icon>backup</mat-icon>
+        Choose file
+      </button>
+      <input type="file" style="display: none;" id="upload_photo" (change)="onFileChange($event)" accept="image/*">
+    </div>
+    <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="end center">
+      <mat-spinner [diameter]="50" *ngIf="isSubmitting"></mat-spinner>
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="add_product_form.invalid && isSubmitting">Upload data</button>
+    </div>
+  </div>
+
+</form>

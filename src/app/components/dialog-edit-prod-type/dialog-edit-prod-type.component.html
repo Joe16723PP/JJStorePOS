@@ -1,0 +1,31 @@
+<form [formGroup]="update_type_form">
+  <h2 mat-dialog-title>Product Type Management</h2>
+  <mat-dialog-content>
+    <div class="container" fxLayout="column">
+      <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+        <mat-select formControlName="prod_type_id">
+          <mat-option *ngFor="let prod of prod_type" [value]="prod.prod_type_id">
+            {{prod.type_name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="update_type_form.get('prod_type_id').invalid && update_type_form.get('prod_type_id').touched">invalid value</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+        <mat-label>product name</mat-label>
+        <input matInput  formControlName="type_name"  type="text" placeholder="product type name">
+        <mat-error *ngIf="update_type_form.get('type_name').invalid && update_type_form.get('type_name').touched">invalid value</mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Update</button>
+  </mat-dialog-actions>
+
+</form>

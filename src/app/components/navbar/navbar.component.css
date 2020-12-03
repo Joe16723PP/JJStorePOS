@@ -1,0 +1,20 @@
+a {
+  color: white;
+  text-decoration: none;
+}
+a:active {
+  color: aqua;
+}
+a:hover {
+  color: #EEEEEE;
+  transition: 0.3s;
+}
+
+mat-toolbar {
+  overflow: hidden;
+  position: fixed;
+  z-index: 10;
+  width: 100%  !important;
+  top: 0;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.5);
+}

@@ -1,0 +1,29 @@
+.total_price {
+  text-align: right;
+  font-size: 50px;
+}
+::ng-deep.mat-pseudo-checkbox{
+  display: none !important;
+}
+.mat-row:hover {
+  background-color: #E4FFE5;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+#sell-prod-table {
+  /*font-size: 40px;*/
+  /*transform: scale(1.03);*/
+}
+.mat-header-cell {
+  font-size: 18px;
+}
+
+.mat-cell {
+  font-size: 18px;
+}
+
+button {
+  font-size: 18px;
+  text-transform: uppercase;
+}

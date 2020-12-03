@@ -1,0 +1,13 @@
+<mat-toolbar color="accent" fxLayout="row" fxLayoutGap="5rem">
+  <a routerLinkActive="active" routerLink="/">JJStore POS</a>
+  <div fxLayout="row" fxLayoutGap="3rem">
+    <a *ngFor="let item of routerLink"
+       routerLinkActive="active"
+       routerLink="{{item.path}}"
+       [queryParams]="item.params"
+       mat-button
+    >
+      {{item.displayed}}
+    </a>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,77 @@
+<form [formGroup]="update_form">
+  <h2 mat-dialog-title>Product management</h2>
+  <mat-dialog-content>
+    <div class="container" fxLayout="column">
+      <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+        <mat-label>barcode</mat-label>
+        <input matInput type="text" formControlName="prod_id" placeholder="barcode">
+        <mat-error *ngIf="update_form.get('prod_id').invalid && update_form.get('prod_id').touched">invalid value</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+        <mat-label>product name</mat-label>
+        <input matInput  formControlName="prod_name"  type="text" placeholder="product name">
+        <mat-error *ngIf="update_form.get('prod_name').invalid && update_form.get('prod_name').touched">invalid value</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+      <span matPrefix>
+        <mat-icon>mode_edit</mat-icon>
+      </span>
+        <mat-label>product type</mat-label>
+        <mat-select formControlName="prod_type_id">
+          <mat-option *ngFor="let prod of prod_type" [value]="prod.prod_type_id">
+            {{prod.type_name}}
+          </mat-option>
+        </mat-select>
+        <!--              <input matInput formControlName="prod_type_id" type="text" placeholder="product type">-->
+        <mat-error *ngIf="update_form.get('prod_type_id').invalid && update_form.get('prod_type_id').touched">invalid value</mat-error>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="outline" >
+          <span matPrefix>
+            <mat-icon>mode_edit</mat-icon>
+          </span>
+          <mat-label>จำนวนที่เหลือ</mat-label>
+          <input matInput formControlName="prod_amount" type="number" placeholder="จำนวนเหลือ">
+          <mat-error *ngIf="update_form.get('prod_amount').invalid && update_form.get('prod_amount').touched">invalid value</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" >
+          <span matPrefix>
+            <mat-icon>mode_edit</mat-icon>
+          </span>
+          <mat-label>จำนวนที่เพิ่ม</mat-label>
+          <input matInput formControlName="add_more" type="number" placeholder="จำนวนที่เพิ่ม">
+          <mat-error *ngIf="update_form.get('add_more').invalid && update_form.get('add_more').touched">invalid value</mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="outline" >
+        <span matPrefix>
+          <mat-icon>mode_edit</mat-icon>
+        </span>
+          <mat-label>cost</mat-label>
+          <input matInput formControlName="cost" type="number" placeholder="cost">
+          <mat-error *ngIf="update_form.get('cost').invalid && update_form.get('cost').touched">invalid value</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" >
+        <span matPrefix>
+          <mat-icon>mode_edit</mat-icon>
+        </span>
+          <mat-label>sell price</mat-label>
+          <input matInput formControlName="sell_price" type="number" placeholder="sell price">
+          <mat-error *ngIf="update_form.get('sell_price').invalid && update_form.get('sell_price').touched">invalid value</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Update</button>
+  </mat-dialog-actions>
+
+</form>
